@@ -17,7 +17,7 @@ $this->menu=array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_list',
 	'viewData'=>array(
-		'gid' => $game->id
+		'game' => $game
 	)
 )); ?>
 </table>

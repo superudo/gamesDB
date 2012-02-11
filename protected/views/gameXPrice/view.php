@@ -15,7 +15,7 @@ $this->menu=array(
 			'submit'=>array(
 				'delete',
 				'id'=>$model->id,
-				'gid'=>$model->game->id
+				'gid'=>$model->game_id
 			),
 			'confirm'=>'Are you sure you want to delete this item?'
 		)

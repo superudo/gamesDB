@@ -85,7 +85,6 @@ class GameXPriceController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-			'gid' => $this->_game->id
 		));
 	}
 
@@ -104,7 +103,7 @@ class GameXPriceController extends Controller
 		{
 			$model->attributes=$_POST['GameXPrice'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id, 'gid' => $model->game_id));
 		}
 
 		$this->render('create',array(
@@ -147,11 +146,14 @@ class GameXPriceController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+			$gid = $model->game_id;
+			 
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('list'), array('gid' => $this->_game->id));
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('list'), array('gid' => $gid));
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
