@@ -173,4 +173,10 @@ class GameController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function getName($id)
+	{
+		$game = $this->findByPk($id);
+		return ($game)? $game->name: "";
+	}
 }

@@ -28,7 +28,15 @@ $this->menu=array(
 		'boxwidth',
 		'boxlength',
 		'boxheight',
-		'publisher_id',
-		'base_game_id',
+		array(
+			'name' => 'publisher_id',
+			'value' => ($model->publisher)? $model->publisher->name: "",
+			'visible' => ($model->publisher !== null),
+		),
+		array(
+		 'name' => 'base_game_id',
+		 'value' => ($model->baseGame)?$model->baseGame->name: "",
+		 'visible' => ($model->baseGame !== null),
+		),
 	),
 )); ?>
