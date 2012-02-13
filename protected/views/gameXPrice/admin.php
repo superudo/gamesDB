@@ -1,12 +1,10 @@
 <?php
 $this->breadcrumbs=array(
-	'Game Xprices'=>array('index'),
+	'Awards'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List GameXPrice', 'url'=>array('index')),
-	array('label'=>'Create GameXPrice', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -23,7 +21,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Game Xprices</h1>
+<h1>Manage Awards</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

@@ -1,13 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Game Xprices'=>array('index'),
+	'Games'=>array('game/index'),
+	Game::model()->findByPk($model->game_id)->name => array('game/view', 'id' => $model->game_id),
+	'Awards'=>array('list', 'gid' => $model->game_id),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List GameXPrice', 'url'=>array('index')),
-	array('label'=>'Create GameXPrice', 'url'=>array('create')),
-	array('label'=>'Update GameXPrice', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Create another award', 'url'=>array('create', 'gid' => $model->game_id)),
+	array('label'=>'Update award', 'url'=>array('update', 'id'=>$model->id, 'gid' => $model->game_id)),
 	array(
 		'label'=>'Delete GameXPrice', 
 		'url'=>'#', 
