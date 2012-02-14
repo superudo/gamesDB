@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Game', 'url'=>array('create')),
-	array('label'=>'Manage Game', 'url'=>array('admin')),
+	array('label'=>'Manage Games', 'url'=>array('admin')),
 );
 ?>
 

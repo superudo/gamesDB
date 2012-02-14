@@ -5,17 +5,18 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label' => Yii::t('ui', 'Games'), 'items' => array(
-		array('label'=>'List Game', 'url'=>array('index')),
-		array('label'=>'Create Game', 'url'=>array('create')),
-		array('label'=>'Update Game', 'url'=>array('update', 'id'=>$model->id)),
-		array('label'=>'Delete Game', 'url'=>'#', 'linkOptions'=>array(
+	array('label' => 'Games', 'itemOptions' => array('class' => 'operation_header'),
+		'items' => array(
+		array('label'=>'List games', 'url'=>array('index')),
+		array('label'=>'Create new game', 'url'=>array('create')),
+		array('label'=>'Update this game', 'url'=>array('update', 'id'=>$model->id)),
+		array('label'=>'Delete this game', 'url'=>'#', 'linkOptions'=>array(
 			'submit'=>array('delete','id'=>$model->id),
 			'confirm'=>'Are you sure you want to delete this item?')
 		),
-		array('label'=>'Manage Game', 'url'=>array('admin')),
+		array('label'=>'Manage games', 'url'=>array('admin')),
 	)),
-	array('label' => Yii::t('ui', 'Awards'), 'items' => array(
+	array('label' => 'Awards', 'items' => array(
 		array('label' => 'List awards', 'url' => array('gameXPrice/list', 'gid' => $model->id)),
 		array('label' => 'Assign award', 'url' => array('gameXPrice/create', 'gid' => $model->id)),
 	)),

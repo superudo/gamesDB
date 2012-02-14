@@ -10,7 +10,7 @@ $this->menu=array(
 	array('label'=>'Create another award', 'url'=>array('create', 'gid' => $model->game_id)),
 	array('label'=>'Update award', 'url'=>array('update', 'id'=>$model->id, 'gid' => $model->game_id)),
 	array(
-		'label'=>'Delete GameXPrice', 
+		'label'=>'Delete award', 
 		'url'=>'#', 
 		'linkOptions'=>array(
 			'submit'=>array(
@@ -21,11 +21,15 @@ $this->menu=array(
 			'confirm'=>'Are you sure you want to delete this item?'
 		)
 	),
-	array('label'=>'Manage GameXPrice', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View GameXPrice #<?php echo $model->id; ?></h1>
+<h1>View award #<?php echo $model->id; ?></h1>
+
+<b><?php echo CHtml::encode($model->getAttributeLabel('id')) ?>:</b> <?php echo $model->id ?><br />
+<b>Award:</b> <pre><?php print_r( $model ) ?></pre><br />
+
+
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

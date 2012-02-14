@@ -1,6 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Game Xprices'=>array('index'),
+	'Games'=>array('game/index'),
+	$game->name => array('game/view', 'id' => $game->id),
 	'Create',
 );
 
@@ -10,6 +11,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create GameXPrice</h1>
+<h1>Assign new award</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model, 'game' => $game)); ?>
