@@ -5,6 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
+	array('label'=>'List awards', 'url'=>array('index')),
+	array('label'=>'Create award', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -13,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('game-xprice-grid', {
+	$.fn.yiiGridView.update('award-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -21,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Awards</h1>
+<h1>Manage awards</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -36,14 +38,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'game-xprice-grid',
+	'id'=>'award-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'price_id',
-		'game_id',
-		'year',
+		'name',
+		'url',
 		array(
 			'class'=>'CButtonColumn',
 		),

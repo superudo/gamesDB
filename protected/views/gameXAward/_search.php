@@ -11,8 +11,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'price_id'); ?>
-		<?php echo $form->textField($model,'price_id'); ?>
+		<?php echo $form->label($model,'award_id'); ?>
+		<?php echo $form->textField($model,'award_id'); ?>
 	</div>
 
 	<div class="row">

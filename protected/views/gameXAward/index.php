@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Game Prices',
+	'Awards',
 );
 
 $this->menu=array(
-	array('label'=>'Create GamePrice', 'url'=>array('create')),
-	array('label'=>'Manage GamePrice', 'url'=>array('admin')),
+	array('label'=>'Create award', 'url'=>array('create')),
+	array('label'=>'Manage awards', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Game Prices</h1>
+<h1>Awards</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

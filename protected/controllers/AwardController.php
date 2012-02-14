@@ -1,12 +1,7 @@
 <?php
 
-class GameXPriceController extends Controller
+class AwardController extends Controller
 {
-	/**
-	 * @var private property containing the associated Game model instance
-	 */
-	private $_game = null;
-	
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -20,37 +15,9 @@ class GameXPriceController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'gameContext - index, view, delete', // check to ensure valid game context
 		);
 	}
 
-	protected function loadGame($game_id)
-	{
-		if ($this->_game === null) {
-			$this->_game = Game::model()->findByPk($game_id);
-			if ($this->_game === null) {
-				throw new CHttpException(404, 'The requested game does not exist.');
-			}
-		}
-		return $this->_game;
-	}
-	
-	public function filterGameContext($filterChain)
-	{
-		$gameId = null;
-		if (isset($_GET['gid'])) {
-			$gameId = $_GET['gid'];
-		}
-		else {
-			if (isset($_POST['gid'])) {
-				$gameId = $_POST['gid'];
-			}
-		}
-		$this->loadGame($gameId);
-		
-		$filterChain->run();
-	}
-	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -60,7 +27,7 @@ class GameXPriceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','list'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -94,21 +61,20 @@ class GameXPriceController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new GameXPrice;
+		$model=new GamePrice;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['GameXPrice']))
+		if(isset($_POST['Award']))
 		{
-			$model->attributes=$_POST['GameXPrice'];
+			$model->attributes=$_POST['Award'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id, 'gid' => $model->game_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'game'=>$this->_game,
 		));
 	}
 
@@ -124,9 +90,9 @@ class GameXPriceController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['GameXPrice']))
+		if(isset($_POST['Award']))
 		{
-			$model->attributes=$_POST['GameXPrice'];
+			$model->attributes=$_POST['Award'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -146,14 +112,11 @@ class GameXPriceController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$model = $this->loadModel($id);
-			$gid = $model->game_id;
-			 
-			$model->delete();
+			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('list'), array('gid' => $gid));
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
@@ -164,7 +127,7 @@ class GameXPriceController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('GameXPrice');
+		$dataProvider=new CActiveDataProvider('Award');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -175,33 +138,16 @@ class GameXPriceController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new GameXPrice('search');
+		$model=new GamePrice('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['GameXPrice']))
-			$model->attributes=$_GET['GameXPrice'];
+		if(isset($_GET['Award']))
+			$model->attributes=$_GET['Award'];
 
 		$this->render('admin',array(
 			'model'=>$model,
 		));
 	}
 
-	public function actionList()
-	{
-		$dataProvider = new CActiveDataProvider('GameXPrice', array(
-			'criteria' => array(
-				'condition' => 'game_id = :gameId',
-				'params' => array(':gameId' => $this->_game->id),
-			),
-			'pagination' => array(
-				'pageSize' => 10,
-			),
-		));
-		$this->render('list',array(
-			'dataProvider'=>$dataProvider,
-			'game' => $this->_game,
-		));
-	}
-	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -209,7 +155,7 @@ class GameXPriceController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=GameXPrice::model()->findByPk($id);
+		$model=GamePrice::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -221,10 +167,11 @@ class GameXPriceController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='game-xprice-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='award-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
+	
 }

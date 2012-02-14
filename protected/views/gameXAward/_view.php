@@ -4,8 +4,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('price_id')); ?>:</b>
-	<?php echo CHtml::encode(GamePrice::model()->findByPk($data->price_id)->name); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('award_id')); ?>:</b>
+	<?php echo CHtml::encode(Award::model()->findByPk($data->award_id)->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('game_id')); ?>:</b>

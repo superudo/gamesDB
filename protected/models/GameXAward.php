@@ -1,21 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "price".
+ * This is the model class for table "game_x_award".
  *
- * The followings are the available columns in table 'price':
+ * The followings are the available columns in tagame_x_awardprice':
  * @property integer $id
- * @property string $name
- * @property string $url
+ * @property integer $price_id
+ * @property integer $game_id
+ * @property integer $year
  *
  * The followings are the available model relations:
- * @property GameXPrice[] $gameXPrices
+ * @property Price $price
+ * @property Game $game
  */
-class GamePrice extends CActiveRecord
+class GameXAward extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return GamePrice the static model class
+	 * @return GameXAward the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +29,7 @@ class GamePrice extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'price';
+		return 'game_x_award';
 	}
 
 	/**
@@ -38,11 +40,11 @@ class GamePrice extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name, url', 'length', 'max'=>45),
+			array('award_id, game_id', 'required'),
+			array('award_id, game_id, year', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, url', 'safe', 'on'=>'search'),
+			array('id, award_id, game_id, year', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +56,8 @@ class GamePrice extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'gameXPrices' => array(self::HAS_MANY, 'GameXPrice', 'price_id'),
+			'award' => array(self::BELONGS_TO, 'Award', 'award_id'),
+			'game' => array(self::BELONGS_TO, 'Game', 'game_id'),
 		);
 	}
 
@@ -65,8 +68,9 @@ class GamePrice extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'url' => 'Url',
+			'award_id' => 'Award',
+			'game_id' => 'Game',
+			'year' => 'Year',
 		);
 	}
 
@@ -82,17 +86,12 @@ class GamePrice extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('url',$this->url,true);
+		$criteria->compare('award_id',$this->award_id);
+		$criteria->compare('game_id',$this->game_id);
+		$criteria->compare('year',$this->year);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	
-	public function getAsList()
-	{
-		$pricearray = CHtml::listData($this->findAll(), 'id', 'name');
-		return $pricearray;
-	}	
 }

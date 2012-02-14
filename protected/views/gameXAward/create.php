@@ -6,8 +6,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List GameXPrice', 'url'=>array('index')),
-	array('label'=>'Manage GameXPrice', 'url'=>array('admin')),
+	array('label'=>'List awards', 'url'=>array('index')),
+	array('label'=>'Manage awards', 'url'=>array('admin')),
 );
 ?>
 

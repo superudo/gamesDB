@@ -74,6 +74,31 @@ INSERT INTO `author` VALUES (1,'Britta Stöckmann',''),(2,'Jens Jahnke','');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `award`
+--
+
+DROP TABLE IF EXISTS `award`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `award` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE latin1_german1_ci NOT NULL,
+  `url` varchar(45) COLLATE latin1_german1_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `award`
+--
+
+LOCK TABLES `award` WRITE;
+/*!40000 ALTER TABLE `award` DISABLE KEYS */;
+INSERT INTO `award` VALUES (1,'Spiel des Jahres','http://www.spiel-des-jahres.org'),(2,'Deutscher Spielepreis','http://www.deutscherspielepreis.de'),(3,'Mensa Select','http://mindgames.us.mensa.org/');
+/*!40000 ALTER TABLE `award` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `category`
 --
 
@@ -145,8 +170,8 @@ CREATE TABLE `game` (
   PRIMARY KEY (`id`),
   KEY `fk_game_publisher1` (`publisher_id`),
   KEY `fk_game_game1` (`base_game_id`),
-  CONSTRAINT `fk_game_game1` FOREIGN KEY (`base_game_id`) REFERENCES `game` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_game_publisher1` FOREIGN KEY (`publisher_id`) REFERENCES `publisher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_game_publisher1` FOREIGN KEY (`publisher_id`) REFERENCES `publisher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_game_game1` FOREIGN KEY (`base_game_id`) REFERENCES `game` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -215,6 +240,36 @@ LOCK TABLES `game_x_author` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `game_x_award`
+--
+
+DROP TABLE IF EXISTS `game_x_award`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game_x_award` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `award_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_game_x_award_price1` (`award_id`),
+  KEY `fk_game_x_award_game1` (`game_id`),
+  CONSTRAINT `fk_game_x_award_game1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_game_x_award_price1` FOREIGN KEY (`award_id`) REFERENCES `award` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_x_award`
+--
+
+LOCK TABLES `game_x_award` WRITE;
+/*!40000 ALTER TABLE `game_x_award` DISABLE KEYS */;
+INSERT INTO `game_x_award` VALUES (1,1,3,2011),(3,2,3,1999),(4,2,3,1999),(6,2,1,1970);
+/*!40000 ALTER TABLE `game_x_award` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `game_x_category`
 --
 
@@ -271,61 +326,6 @@ LOCK TABLES `game_x_feature` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `game_x_price`
---
-
-DROP TABLE IF EXISTS `game_x_price`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `game_x_price` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `price_id` int(11) NOT NULL,
-  `game_id` int(11) NOT NULL,
-  `year` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_game_x_price_price1` (`price_id`),
-  KEY `fk_game_x_price_game1` (`game_id`),
-  CONSTRAINT `fk_game_x_price_game1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_game_x_price_price1` FOREIGN KEY (`price_id`) REFERENCES `price` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `game_x_price`
---
-
-LOCK TABLES `game_x_price` WRITE;
-/*!40000 ALTER TABLE `game_x_price` DISABLE KEYS */;
-INSERT INTO `game_x_price` VALUES (1,1,3,2011),(3,2,3,1999),(4,2,3,1999),(6,2,1,1970);
-/*!40000 ALTER TABLE `game_x_price` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `price`
---
-
-DROP TABLE IF EXISTS `price`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `price` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE latin1_german1_ci NOT NULL,
-  `url` varchar(45) COLLATE latin1_german1_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `price`
---
-
-LOCK TABLES `price` WRITE;
-/*!40000 ALTER TABLE `price` DISABLE KEYS */;
-INSERT INTO `price` VALUES (1,'Spiel des Jahres','http://www.spiel-des-jahres.org'),(2,'Deutscher Spielepreis','http://www.deutscherspielepreis.de'),(3,'Mensa Select','http://mindgames.us.mensa.org/');
-/*!40000 ALTER TABLE `price` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `publisher`
 --
 
@@ -359,4 +359,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-14 21:35:37
+-- Dump completed on 2012-02-14 22:24:54

@@ -24,7 +24,7 @@
  * @property Author[] $authors
  * @property Category[] $categories
  * @property GameXFeature[] $gameXFeatures
- * @property GameXPrice[] $gameXPrices
+ * @property GameXAward[] $gameXAwards
  */
 class Game extends CActiveRecord
 {
@@ -79,8 +79,8 @@ class Game extends CActiveRecord
 			'categories' => array(self::MANY_MANY, 'Category', 'game_x_category(game_id, category_id)'),
 			'gameXFeatures' => array(self::HAS_MANY, 'GameXFeature', 'game_id'),
 			
-			'prices' => array(self::MANY_MANY, 'GamePrice', 'game_x_price(price_id, game_id)', 'index' => 'id'),
-			'gameXPrices' => array(self::HAS_MANY, 'GameXPrice', 'game_id', 'index' => 'price_id'),
+			'awards' => array(self::MANY_MANY, 'Award', 'game_x_award(award_id, game_id)', 'index' => 'id'),
+			'gameXAwards' => array(self::HAS_MANY, 'GameXAward', 'game_id', 'index' => 'award_id'),
 		);
 	}
 

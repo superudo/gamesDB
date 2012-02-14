@@ -17,8 +17,8 @@ $this->menu=array(
 		array('label'=>'Manage games', 'url'=>array('admin')),
 	)),
 	array('label' => 'Awards', 'items' => array(
-		array('label' => 'List awards', 'url' => array('gameXPrice/list', 'gid' => $model->id)),
-		array('label' => 'Assign award', 'url' => array('gameXPrice/create', 'gid' => $model->id)),
+		array('label' => 'List awards', 'url' => array('gameXAward/list', 'gid' => $model->id)),
+		array('label' => 'Assign award', 'url' => array('gameXAward/create', 'gid' => $model->id)),
 	)),
 );
 ?>

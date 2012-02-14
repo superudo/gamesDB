@@ -1,7 +1,7 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'game-price-form',
+	'id'=>'award-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
