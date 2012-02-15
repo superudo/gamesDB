@@ -61,7 +61,7 @@ class AwardController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new GamePrice;
+		$model=new Award;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -138,7 +138,7 @@ class AwardController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new GamePrice('search');
+		$model=new Award('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Award']))
 			$model->attributes=$_GET['Award'];
@@ -155,7 +155,7 @@ class AwardController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=GamePrice::model()->findByPk($id);
+		$model=Award::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

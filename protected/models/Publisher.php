@@ -99,4 +99,11 @@ class Publisher extends CActiveRecord
 		}
 		return $ret;
 	}
+	
+	public function getPublisherOptions()
+	{
+		return CHtml::listData(
+			$this->findAll(), 'id', 'name'
+		);
+	}
 }

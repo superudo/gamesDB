@@ -59,13 +59,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'publisher_id'); ?>
-		<?php echo $form->textField($model,'publisher_id'); ?>
+		<?php echo $form->dropDownList($model, 'publisher_id', Publisher::model()->getPublisherOptions(), array('empty' => '-- Select publisher --')); ?>
 		<?php echo $form->error($model,'publisher_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'base_game_id'); ?>
-		<?php echo $form->textField($model,'base_game_id'); ?>
+		<?php echo $form->dropDownList($model, 'base_game_id', $model->getPotentialBaseGameOptions(), array('empty' => '-- Select base game --')); ?>
 		<?php echo $form->error($model,'base_game_id'); ?>
 	</div>
 

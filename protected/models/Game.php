@@ -131,4 +131,16 @@ class Game extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getPotentialBaseGameOptions()
+	{
+		$criteria = new CDBCriteria;
+		$criteria->select = 'id, name';
+		$criteria->condition = 'base_game_id IS NULL';
+		if ($this->id !== null) {
+			$criteria->condition = $criteria->condition . ' AND id <> :id';
+			$criteria->params = array(':id' => $this->id);
+		}
+		return CHtml::listData($this->findAll($criteria), 'id', 'name');
+	}
 }
