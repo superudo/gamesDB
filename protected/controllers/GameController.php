@@ -27,7 +27,7 @@ class GameController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','test'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -150,6 +150,15 @@ class GameController extends Controller
 		));
 	}
 
+	public function actionTest($id) 
+	{
+		$model = $this->loadModel($id);
+		
+		$this->render('test', array(
+			'model' => $model,
+		));	
+	}
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

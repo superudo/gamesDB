@@ -293,6 +293,7 @@ CREATE TABLE `game_x_category` (
 
 LOCK TABLES `game_x_category` WRITE;
 /*!40000 ALTER TABLE `game_x_category` DISABLE KEYS */;
+INSERT INTO `game_x_category` VALUES (3,1),(2,4),(3,4);
 /*!40000 ALTER TABLE `game_x_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-16  8:02:43
+-- Dump completed on 2012-02-17  0:11:11

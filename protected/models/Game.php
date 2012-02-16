@@ -28,6 +28,8 @@
  */
 class Game extends CActiveRecord
 {
+	public $categoryIds = array();
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Game the static model class
@@ -37,10 +39,20 @@ class Game extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function afterFind()
+	{
+		if (!empty($this->categories)) {
+			foreach ($this->categories as $n => $category) {
+				$this->categoryIds[] = $category->id;
+			}
+		}
+		parent::afterFind();
+	}
+	
 	public function behaviors()
     {
         return array('CAdvancedArBehavior' => array(
-            'class' => Yii::getPathOfAlias('behaviors') . '.CAdvancedArBehavior',
+            'class' => Yii::getPathOfAlias('behaviors') . 'CAdvancedArBehavior',
 		));
     }
 		
@@ -64,6 +76,7 @@ class Game extends CActiveRecord
 			array('min_players, max_players, min_age, duration, publisher_id, base_game_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
 			array('boxwidth, boxlength, boxheight', 'length', 'max'=>4),
+			array('categoryIds', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, min_players, max_players, min_age, duration, boxwidth, boxlength, boxheight, publisher_id, base_game_id', 'safe', 'on'=>'search'),
