@@ -32,6 +32,13 @@ class Category extends CActiveRecord
 		return 'category';
 	}
 
+	public function behaviors()
+    {
+        return array('CAdvancedArBehavior' => array(
+            'class' => Yii::getPathOfAlias('behaviors') . '.CAdvancedArBehavior',
+		));
+    }
+		
 	/**
 	 * @return array validation rules for model attributes.
 	 */

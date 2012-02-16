@@ -37,6 +37,13 @@ class Game extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function behaviors()
+    {
+        return array('CAdvancedArBehavior' => array(
+            'class' => Yii::getPathOfAlias('behaviors') . '.CAdvancedArBehavior',
+		));
+    }
+		
 	/**
 	 * @return string the associated database table name
 	 */

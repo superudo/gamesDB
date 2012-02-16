@@ -170,8 +170,8 @@ CREATE TABLE `game` (
   PRIMARY KEY (`id`),
   KEY `fk_game_publisher1` (`publisher_id`),
   KEY `fk_game_game1` (`base_game_id`),
-  CONSTRAINT `fk_game_publisher1` FOREIGN KEY (`publisher_id`) REFERENCES `publisher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_game_game1` FOREIGN KEY (`base_game_id`) REFERENCES `game` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `fk_game_game1` FOREIGN KEY (`base_game_id`) REFERENCES `game` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_game_publisher1` FOREIGN KEY (`publisher_id`) REFERENCES `publisher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -181,7 +181,7 @@ CREATE TABLE `game` (
 
 LOCK TABLES `game` WRITE;
 /*!40000 ALTER TABLE `game` DISABLE KEYS */;
-INSERT INTO `game` VALUES (1,'Die Schatztaucher',2,4,6,35,'0.0','0.0','0.0',1,NULL),(2,'Expedition Sumatra - Dadu Dadu',2,4,8,NULL,'0.0','0.0','0.0',2,NULL),(3,'Quirkle',2,4,6,45,'29.5','29.5','7.5',1,NULL);
+INSERT INTO `game` VALUES (1,'Die Schatztaucher',2,4,6,35,'0.0','0.0','0.0',1,NULL),(2,'Expedition Sumatra - Dadu Dadu',2,4,8,20,'0.0','0.0','0.0',2,NULL),(3,'Quirkle',2,4,6,45,'29.5','29.5','7.5',1,NULL);
 /*!40000 ALTER TABLE `game` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,4 +359,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-14 22:24:54
+-- Dump completed on 2012-02-16  8:02:43
