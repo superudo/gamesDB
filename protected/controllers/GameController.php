@@ -153,7 +153,15 @@ class GameController extends Controller
 	public function actionTest($id) 
 	{
 		$model = $this->loadModel($id);
-		
+
+		if (isset($_POST['Game'])) {
+			$model->attributes = $_POST['Game'];
+			$model->categories = $_POST['Game']['categoryIds'];
+			 
+			if($model->save())
+				$this->redirect(array('view', 'id' => $id));
+		}
+
 		$this->render('test', array(
 			'model' => $model,
 		));	

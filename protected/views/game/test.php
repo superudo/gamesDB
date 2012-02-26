@@ -13,4 +13,19 @@
     <?php echo $form->error($model, 'categories'); ?>
 </div>
 
+<div>
+    <b><?php echo $form->labelEx($model, 'categories'); ?></b>
+    <?php echo $form->listBox($model, 'categoryIds', 
+    	CHtml::listData(Category::model()->findAll(), 'id', 'name'), 
+    	array(
+    		'multiple' => true,
+    		'checkAll' => 'Check All'
+		)); 
+    ?>
+</div>
+
+<div class="row buttons">
+	<?php echo CHtml::submitButton('Save'); ?>
+</div>
+
 <?php $this->endWidget(); ?>
