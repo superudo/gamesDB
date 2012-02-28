@@ -41,20 +41,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'boxwidth'); ?>
-		<?php echo $form->textField($model,'boxwidth',array('size'=>4,'maxlength'=>4)); ?>
+		<?php echo $form->textField($model,'boxwidth',array('size'=>4,'maxlength'=>4)); ?> x <?php echo $form->textField($model,'boxlength',array('size'=>4,'maxlength'=>4)); ?> x <?php echo $form->textField($model,'boxheight',array('size'=>4,'maxlength'=>4)); ?>
 		<?php echo $form->error($model,'boxwidth'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'boxlength'); ?>
-		<?php echo $form->textField($model,'boxlength',array('size'=>4,'maxlength'=>4)); ?>
-		<?php echo $form->error($model,'boxlength'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'boxheight'); ?>
-		<?php echo $form->textField($model,'boxheight',array('size'=>4,'maxlength'=>4)); ?>
-		<?php echo $form->error($model,'boxheight'); ?>
+		<?php echo $form->labelEx($model, 'categories'); ?>
+	    <?php echo $form->listBox($model, 'categoryIds', 
+	    	CHtml::listData(Category::model()->findAll(), 'id', 'name'), 
+	    	array(
+	    		'multiple' => true,
+	    		'checkAll' => 'Check All'
+			)); 
+	    ?>
 	</div>
 
 	<div class="row">

@@ -68,7 +68,9 @@ class GameController extends Controller
 
 		if(isset($_POST['Game']))
 		{
-			$model->attributes=$_POST['Game'];
+			$model->attributes = $_POST['Game'];
+			$model->categories = $_POST['Game']['categoryIds'];
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -92,7 +94,9 @@ class GameController extends Controller
 
 		if(isset($_POST['Game']))
 		{
-			$model->attributes=$_POST['Game'];
+			$model->attributes = $_POST['Game'];
+			$model->categories = $_POST['Game']['categoryIds'];
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
