@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in tagame_x_awardprice':
  * @property integer $id
- * @property integer $price_id
+ * @property integer $award_id
  * @property integer $game_id
  * @property integer $year
  *

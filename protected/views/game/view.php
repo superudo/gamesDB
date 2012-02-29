@@ -20,7 +20,11 @@ $this->menu=array(
 		array('label' => 'List awards', 'url' => array('gameXAward/list', 'gid' => $model->id)),
 		array('label' => 'Assign award', 'url' => array('gameXAward/create', 'gid' => $model->id)),
 	)),
-);
+	array('label' => 'Features', 'items' => array(
+		array('label' => 'List features', 'url' => array('gameXFeature/list', 'gid' => $model->id)),
+		array('label' => 'Assign feature', 'url' => array('gameXFeature/create', 'gid' => $model->id)),
+	)),
+	);
 ?>
 
 <h1>View Game #<?php echo $model->id; ?></h1>

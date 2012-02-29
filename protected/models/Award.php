@@ -89,10 +89,4 @@ class Award extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	public function getAsList()
-	{
-		$pricearray = CHtml::listData($this->findAll(), 'id', 'name');
-		return $pricearray;
-	}	
 }

@@ -13,7 +13,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'award_id'); ?>
-		<?php echo $form->dropDownList($model, 'award_id', Award::model()->getAsList()); ?>
+		<?php echo $form->dropDownList($model, 'award_id', 
+			CHtml::listData(Award::model()->findAll(), 'id', 'name')); 
+		?>
 		<?php echo $form->error($model,'award_id'); ?>
 	</div>
 

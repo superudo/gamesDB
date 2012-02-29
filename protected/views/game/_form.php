@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'boxwidth'); ?>
+		<?php echo $form->labelEx($model,'boxsize'); ?>
 		<?php echo $form->textField($model,'boxwidth',array('size'=>4,'maxlength'=>4)); ?> x <?php echo $form->textField($model,'boxlength',array('size'=>4,'maxlength'=>4)); ?> x <?php echo $form->textField($model,'boxheight',array('size'=>4,'maxlength'=>4)); ?>
 		<?php echo $form->error($model,'boxwidth'); ?>
 	</div>
@@ -51,7 +51,7 @@
 	    	CHtml::listData(Category::model()->findAll(), 'id', 'name'), 
 	    	array(
 	    		'multiple' => true,
-	    		'checkAll' => 'Check All'
+	    		'checkAll' => 'Check All',
 			)); 
 	    ?>
 	</div>
@@ -61,6 +61,29 @@
 		<?php echo $form->dropDownList($model, 'publisher_id', Publisher::model()->getPublisherOptions(), array('empty' => '-- Select publisher --')); ?>
 		<?php echo $form->error($model,'publisher_id'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model, 'artists'); ?>
+		<?php echo $form->listBox($model, 'artistIds',
+			CHtml::listData(Artist::model()->findAll(), 'id', 'name'),
+			array(
+				'multiple' => true,
+				'checkAll' => 'Check all',
+			));
+		?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model, 'authors'); ?>
+		<?php echo $form->listBox($model, 'authorIds',
+			CHtml::listData(Author::model()->findAll(), 'id', 'name'),
+			array(
+				'multiple' => true,
+				'checkAll' => 'Check all',
+			));
+		?>
+	</div>
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'base_game_id'); ?>

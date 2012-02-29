@@ -29,6 +29,8 @@
 class Game extends CActiveRecord
 {
 	public $categoryIds = array();
+	public $authorIds = array();
+	public $artistIds = array();
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -46,6 +48,19 @@ class Game extends CActiveRecord
 				$this->categoryIds[] = $category->id;
 			}
 		}
+		
+		if (!empty($this->authors)) {
+			foreach ($this->authors as $a => $author) {
+				$this->authorIds[] = $author->id;
+			}
+		}
+		
+		if (!empty($this->artists)) {
+			foreach ($this->artists as $a => $artist) {
+				$this->artistIds[] = $artist->id;
+			}
+		}
+		
 		parent::afterFind();
 	}
 	
@@ -121,6 +136,11 @@ class Game extends CActiveRecord
 			'boxheight' => 'Boxheight',
 			'publisher_id' => 'Publisher',
 			'base_game_id' => 'Base Game',
+			
+			'boxsize' => 'Boxsize',
+			'categories' => 'Categories',
+			'artists' => 'Artists',
+			'authors' => 'Authors',
 		);
 	}
 

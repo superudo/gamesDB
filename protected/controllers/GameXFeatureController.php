@@ -1,6 +1,6 @@
 <?php
 
-class GameXAwardController extends GameContextController
+class GameXFeatureController extends GameContextController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class GameXAwardController extends GameContextController
 	 */
 	public function actionCreate()
 	{
-		$model=new GameXAward;
+		$model=new GameXFeature;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Award']))
+		if(isset($_POST['GameXFeature']))
 		{
-			$model->attributes=$_POST['Award'];
+			$model->attributes=$_POST['GameXFeature'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id, 'gid' => $model->game_id));
 		}
@@ -92,16 +92,16 @@ class GameXAwardController extends GameContextController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Award']))
+		if(isset($_POST['GameXFeature']))
 		{
-			$model->attributes=$_POST['Award'];
+			$model->attributes=$_POST['GameXFeature'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'game'=>$this->_game,
+			'game'=>$this->_game
 		));
 	}
 
@@ -117,7 +117,7 @@ class GameXAwardController extends GameContextController
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
 			$gid = $model->game_id;
-			 
+
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -133,7 +133,7 @@ class GameXAwardController extends GameContextController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('GameXAward');
+		$dataProvider=new CActiveDataProvider('GameXFeature');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -144,19 +144,19 @@ class GameXAwardController extends GameContextController
 	 */
 	public function actionAdmin()
 	{
-		$model=new GameXAward('search');
+		$model=new GameXFeature('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Award']))
-			$model->attributes=$_GET['Award'];
+		if(isset($_GET['GameXFeature']))
+			$model->attributes=$_GET['GameXFeature'];
 
 		$this->render('admin',array(
 			'model'=>$model,
 		));
 	}
-
+	
 	public function actionList()
 	{
-		$dataProvider = new CActiveDataProvider('GameXAward', array(
+		$dataProvider = new CActiveDataProvider('GameXFeature', array(
 			'criteria' => array(
 				'condition' => 'game_id = :gameId',
 				'params' => array(':gameId' => $this->_game->id),
@@ -170,7 +170,7 @@ class GameXAwardController extends GameContextController
 			'game' => $this->_game,
 		));
 	}
-	
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -178,7 +178,7 @@ class GameXAwardController extends GameContextController
 	 */
 	public function loadModel($id)
 	{
-		$model=GameXAward::model()->findByPk($id);
+		$model=GameXFeature::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -190,7 +190,7 @@ class GameXAwardController extends GameContextController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='game-xaward-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='game-xfeature-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

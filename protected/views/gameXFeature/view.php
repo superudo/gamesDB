@@ -2,15 +2,15 @@
 $this->breadcrumbs=array(
 	'Games'=>array('game/index'),
 	Game::model()->findByPk($model->game_id)->name => array('game/view', 'id' => $model->game_id),
-	'Awards'=>array('list', 'gid' => $model->game_id),
+	'Features'=>array('list', 'gid' => $model->game_id),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'Create another award', 'url'=>array('create', 'gid' => $model->game_id)),
-	array('label'=>'Update award', 'url'=>array('update', 'id'=>$model->id, 'gid' => $model->game_id)),
+	array('label'=>'Create another feature', 'url'=>array('create', 'gid' => $model->game_id)),
+	array('label'=>'Update feature', 'url'=>array('update', 'id'=>$model->id, 'gid' => $model->game_id)),
 	array(
-		'label'=>'Delete award', 
+		'label'=>'Delete feature', 
 		'url'=>'#', 
 		'linkOptions'=>array(
 			'submit'=>array(
@@ -24,14 +24,14 @@ $this->menu=array(
 );
 ?>
 
-<h1>View award #<?php echo $model->id; ?></h1>
+<h1>View feature #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'award_id',
+		'feature_id',
 		'game_id',
-		'year',
+		'value',
 	),
 )); ?>

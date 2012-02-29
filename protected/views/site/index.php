@@ -13,6 +13,7 @@
 <ul>
 	<li><?php echo CHtml::link('Categories', array('category/index')); ?> (<?php echo CHtml::link('Create', array('category/create')); ?>)</li>
 	<li><?php echo CHtml::link('Awards', array('award/index')); ?> (<?php echo CHtml::link('Create', array('award/create')); ?>)</li>
+	<li><?php echo CHtml::link('Features', array('feature/index')); ?> (<?php echo CHtml::link('Create', array('feature/create')); ?>)</li>
 	<li><?php echo CHtml::link('Games', array('game/index')); ?> (<?php echo CHtml::link('Create', array('game/create')); ?>)</li>
 	<li><?php echo CHtml::link('Artists', array('artist/index')); ?> (<?php echo CHtml::link('Create', array('artist/create')); ?>)</li>
 	<li><?php echo CHtml::link('Publishers', array('publisher/index')); ?> (<?php echo CHtml::link('Create', array('publisher/create')); ?>)</li>
