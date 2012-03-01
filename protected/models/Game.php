@@ -41,6 +41,11 @@ class Game extends CActiveRecord
 		return parent::model($className);
 	}
 
+	protected function afterConstruct() {
+		$this->min_players = 1;
+		$this->max_players = 8;
+	}
+
 	public function afterFind()
 	{
 		if (!empty($this->categories)) {
@@ -88,7 +93,8 @@ class Game extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('min_players, max_players, min_age, duration, publisher_id, base_game_id', 'numerical', 'integerOnly'=>true),
+			array('min_age, duration, publisher_id, base_game_id', 'numerical', 'integerOnly'=>true, 'min'=>0),
+			array('min_players, max_players', 'numerical', 'min' => 1, 'max' => 8, 'integerOnly'=>true), 
 			array('name', 'length', 'max'=>100),
 			array('boxwidth, boxlength, boxheight', 'length', 'max'=>4),
 			array('categoryIds', 'safe'),

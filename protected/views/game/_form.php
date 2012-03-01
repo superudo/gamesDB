@@ -2,7 +2,9 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'game-form',
+	'focus'=>array($model, 'name'),
 	'enableAjaxValidation'=>false,
+	'enableClientValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -25,6 +27,25 @@
 		<?php echo $form->labelEx($model,'max_players'); ?>
 		<?php echo $form->textField($model,'max_players'); ?>
 		<?php echo $form->error($model,'max_players'); ?>
+	</div>
+	
+	<div class="row">
+		<?
+		$this->widget('application.extensions.jui.ESlider',
+		              array(                    
+		                    'name' => 'slider',
+		                    'theme' => 'ui-lightness',
+		                    'enabled' => true,
+		                    'minValue' => 1.0,
+		                    'maxValue' => 8.0,
+		                    'value' => array($model->min_players, $model->max_players),
+		                    'linkedElements' => array('Game_min_players','Game_max_players'),
+		                    'numberOfHandlers' => 2,
+		                    'range' => true,
+		                    'htmlOptions' => array('style'=>'width:300px;height:10px;')
+		                   )
+		             );
+		?>
 	</div>
 
 	<div class="row">

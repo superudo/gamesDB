@@ -17,6 +17,32 @@
     ?>
 </div>
 
+
+<div>
+	<? echo CHtml::textField('x1'); ?><br />
+	<? echo CHtml::textField('x2'); ?><br />
+
+	<?
+	$this->widget('application.extensions.jui.ESlider',
+	              array(                    
+	                    'name' => 'slider',
+	                    'theme' => 'ui-lightness',
+	                    'enabled' => true,
+	                    'minValue' => 1.0,
+	                    'maxValue' => 8.0,
+	                    'value' => array(1.0, 8.0),
+	                    'linkedElements' => array('x1','x2'),
+	                    'numberOfHandlers' => 2,
+	                    'range' => true,
+	                    'htmlOptions' => array('style'=>'width:200px;height:10px;')
+	                   )
+	             );
+	?>
+</div>
+
+
+
+
 <div class="row buttons">
 	<?php echo CHtml::submitButton('Save'); ?>
 </div>
