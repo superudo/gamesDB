@@ -32,15 +32,28 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'name',
-		'min_players',
-		'max_players',
+		array(
+			'label' => 'Luding URL',
+			'type' => 'raw',
+			'value' => CHtml::link($model->ludingUrl, $model->ludingUrl, array('target' => 'luding')),
+		),
+		array(
+			'label' => 'Players',
+			'type' => 'raw',
+			'value' => $model->min_players . " - " . $model->max_players, 
+		),
 		'min_age',
-		'duration',
-		'boxwidth',
-		'boxlength',
-		'boxheight',
+		array(
+			'name' => 'duration',
+			'type' => 'raw',
+			'value' => $model->gameDuration,
+		), 
+		array(
+			'label' => 'Boxsize',
+			'type' => 'raw',
+			'value' => $model->boxSize,
+		),
 		array(
 			'name' => 'publisher_id',
 			'value' => ($model->publisher)? $model->publisher->name: "",

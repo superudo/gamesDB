@@ -18,6 +18,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model, 'luding_id'); ?>
+		<?php echo $form->textField($model, 'luding_id'); ?>
+		<?php echo $form->error($model, 'luding_id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'min_players'); ?>
 		<?php echo $form->textField($model,'min_players'); ?>
 		<?php echo $form->error($model,'min_players'); ?>

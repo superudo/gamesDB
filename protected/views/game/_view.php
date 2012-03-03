@@ -1,6 +1,10 @@
 <div class="view">
 		
-	<b><?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id' => $data->id)); ?></b><br />
+	<b>	
+	<?php if ($data->luding_id != null): ?>
+		<?php echo CHtml::link("&loz;", $data->getLudingUrl(), array("target" => "luding")); ?>
+	<?php endif; ?>
+	<?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id' => $data->id)); ?></b><br />
 
 	<b>Players:</b>
 	<?php echo CHtml::encode($data->min_players . " - " . $data->max_players); ?>

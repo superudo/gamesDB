@@ -5,7 +5,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
+	<?php echo CHtml::encode($data->name); ?> (<?php echo CHtml::encode(count($data->gameXAwards)); ?>)
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('url')); ?>:</b>

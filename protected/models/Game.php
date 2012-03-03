@@ -95,6 +95,7 @@ class Game extends CActiveRecord
 			array('name', 'required'),
 			array('min_age, duration, publisher_id, base_game_id', 'numerical', 'integerOnly'=>true, 'min'=>0),
 			array('min_players, max_players', 'numerical', 'min' => 1, 'max' => 8, 'integerOnly'=>true), 
+			array('luding_id', 'numerical', 'integerOnly' => true),
 			array('name', 'length', 'max'=>100),
 			array('boxwidth, boxlength, boxheight', 'length', 'max'=>4),
 			array('categoryIds', 'safe'),
@@ -142,6 +143,7 @@ class Game extends CActiveRecord
 			'boxheight' => 'Boxheight',
 			'publisher_id' => 'Publisher',
 			'base_game_id' => 'Base Game',
+			'luding_id' => 'Luding Id',
 			
 			'boxsize' => 'Boxsize',
 			'categories' => 'Categories',
@@ -188,5 +190,23 @@ class Game extends CActiveRecord
 			$criteria->params = array(':id' => $this->id);
 		}
 		return CHtml::listData($this->findAll($criteria), 'id', 'name');
+	}
+	
+	public function getLudingUrl() 
+	{
+		if ($this->luding_id != null) {
+			return "http://luding.org/Skripte/GameData.py/DEgameid/" . $this->luding_id;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public function getBoxSize() {
+		return $this->boxlength . " x " . $this->boxwidth . " x " . $this->boxheight;
+	}
+	
+	public function getGameDuration() {
+		return (($this->duration == null) || ($this->duration == 0))? "n/a": $this->duration . " min";
 	}
 }
