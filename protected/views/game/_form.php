@@ -13,7 +13,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'name',array('maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
@@ -24,15 +24,12 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'min_players'); ?>
-		<?php echo $form->textField($model,'min_players'); ?>
+		<?php echo $form->labelEx($model, 'players'); ?>
+		<?php echo $form->textField($model, 'min_players', array('size' => 1, 'maxlength' => 10, 'disabled' => TRUE)); ?>
+		-
+		<?php echo $form->textField($model,'max_players', array('size' => 1, 'maxlength' => 10, 'disabled' => TRUE)); ?>
 		<?php echo $form->error($model,'min_players'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'max_players'); ?>
-		<?php echo $form->textField($model,'max_players'); ?>
-		<?php echo $form->error($model,'max_players'); ?>
+		
 	</div>
 	
 	<div class="row">
@@ -43,9 +40,9 @@
 		                    'theme' => 'ui-lightness',
 		                    'enabled' => true,
 		                    'minValue' => 1.0,
-		                    'maxValue' => 8.0,
+		                    'maxValue' => 10.0,
 		                    'value' => array($model->min_players, $model->max_players),
-		                    'linkedElements' => array('Game_min_players','Game_max_players'),
+		                   	'linkedElements' => array('Game_min_players','Game_max_players'),
 		                    'numberOfHandlers' => 2,
 		                    'range' => true,
 		                    'htmlOptions' => array('style'=>'width:300px;height:10px;')

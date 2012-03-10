@@ -43,7 +43,7 @@ class Game extends CActiveRecord
 
 	protected function afterConstruct() {
 		$this->min_players = 1;
-		$this->max_players = 8;
+		$this->max_players = 10;
 	}
 
 	public function afterFind()
@@ -149,6 +149,7 @@ class Game extends CActiveRecord
 			'categories' => 'Categories',
 			'artists' => 'Artists',
 			'authors' => 'Authors',
+			'players' => 'Players',
 		);
 	}
 
