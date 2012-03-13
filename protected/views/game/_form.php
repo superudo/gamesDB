@@ -33,21 +33,21 @@
 	</div>
 	
 	<div class="row">
-		<?
+		<?php
 		$this->widget('application.extensions.jui.ESlider',
-		              array(                    
-		                    'name' => 'slider',
-		                    'theme' => 'ui-lightness',
-		                    'enabled' => true,
-		                    'minValue' => 1.0,
-		                    'maxValue' => 10.0,
-		                    'value' => array($model->min_players, $model->max_players),
-		                   	'linkedElements' => array('Game_min_players','Game_max_players'),
-		                    'numberOfHandlers' => 2,
-		                    'range' => true,
-		                    'htmlOptions' => array('style'=>'width:300px;height:10px;')
-		                   )
-		             );
+		  array(                    
+		        'name' => 'slider',
+		        'theme' => 'ui-lightness',
+		        'enabled' => true,
+		        'minValue' => 1.0,
+		        'maxValue' => 10.0,
+		        'value' => array($model->min_players, $model->max_players),
+		       	'linkedElements' => array('Game_min_players','Game_max_players'),
+		        'numberOfHandlers' => 2,
+		        'range' => true,
+		        'htmlOptions' => array('style'=>'width:300px;height:10px;')
+		       )
+         );
 		?>
 	</div>
 
@@ -61,6 +61,27 @@
 		<?php echo $form->labelEx($model,'duration'); ?>
 		<?php echo $form->textField($model,'duration'); ?>
 		<?php echo $form->error($model,'duration'); ?>
+	</div>
+
+	<div class="row">
+		<?php
+		$this->widget('application.extensions.jui.ESlider',
+			array(
+				'name' => 'slider2',
+				'theme' => 'ui-lightness',
+				'enabled' => true,
+				'minValue'=> 5.0,
+				'maxValue' => 120.0,
+				'step' => 5.0,
+				'value' => array($model->duration),
+				'linkedElements' => array('Game_duration'),
+				'range' => false,
+				'htmlOptions' => array(
+					'style' => 'width:300px;height:10px;',
+				),
+			)
+		);
+		?>
 	</div>
 
 	<div class="row">
