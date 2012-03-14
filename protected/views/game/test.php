@@ -5,7 +5,6 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-
 <div>
     <b><?php echo $form->labelEx($model, 'categories'); ?></b>
     <?php echo $form->listBox($model, 'categoryIds', 

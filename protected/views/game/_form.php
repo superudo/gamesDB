@@ -12,6 +12,28 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php $this->widget('application.extensions.selectToUISlider.ESelectToUISlider', 
+			array(
+				'label' => 'Number of Players',
+				'model' => $model,
+				'properties' => array('min_players', 'max_players'),
+				'values' => array(
+					1 => 1,
+					2 => 2,
+					3 => 3,
+					4 => 4,
+					5 => 5,
+					6 => 6,
+					7 => 7,
+					8 => 8,
+					9 => 9,
+					10 => 10
+				),
+				'htmlOptions' => array('hidden' => true),
+			)
+		); ?>
+	</div>
+	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
