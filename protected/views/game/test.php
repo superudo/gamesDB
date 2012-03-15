@@ -5,43 +5,30 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<div>
-    <b><?php echo $form->labelEx($model, 'categories'); ?></b>
-    <?php echo $form->listBox($model, 'categoryIds', 
-    	CHtml::listData(Category::model()->findAll(), 'id', 'name'), 
-    	array(
-    		'multiple' => true,
-    		'checkAll' => 'Check All'
-		)); 
-    ?>
-</div>
+	<div class="row">
+		<?php $this->widget('application.extensions.selectToUISlider.ESelectToUISlider',
+			array(
+				'label' => 'Number of Players',
+				'model' => $model,
+				'properties' => array('min_players', 'max_players'),
+				'values' => array(
+					1 => 1,
+					2 => 2,
+					3 => 3,
+					4 => 4,
+					5 => 5,
+					6 => 6,
+					7 => 7,
+					8 => 8,
+					9 => 9,
+					10 => 10
+					),
+				'htmlOptions' => array(),
+			)
+		); ?>
+	</div>
 
-
-<div>
-	<? echo CHtml::textField('x1'); ?><br />
-	<? echo CHtml::textField('x2'); ?><br />
-
-	<?
-	$this->widget('application.extensions.jui.ESlider',
-	              array(                    
-	                    'name' => 'slider',
-	                    'theme' => 'ui-lightness',
-	                    'enabled' => true,
-	                    'minValue' => 1.0,
-	                    'maxValue' => 8.0,
-	                    'value' => array(1.0, 8.0),
-	                    'linkedElements' => array('x1','x2'),
-	                    'numberOfHandlers' => 2,
-	                    'range' => true,
-	                    'htmlOptions' => array('style'=>'width:200px;height:10px;')
-	                   )
-	             );
-	?>
-</div>
-
-
-
-
+<div class="row"><hr></div>
 <div class="row buttons">
 	<?php echo CHtml::submitButton('Save'); ?>
 </div>

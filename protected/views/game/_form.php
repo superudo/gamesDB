@@ -12,28 +12,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php $this->widget('application.extensions.selectToUISlider.ESelectToUISlider', 
-			array(
-				'label' => 'Number of Players',
-				'model' => $model,
-				'properties' => array('min_players', 'max_players'),
-				'values' => array(
-					1 => 1,
-					2 => 2,
-					3 => 3,
-					4 => 4,
-					5 => 5,
-					6 => 6,
-					7 => 7,
-					8 => 8,
-					9 => 9,
-					10 => 10
-				),
-				'htmlOptions' => array('hidden' => true),
-			)
-		); ?>
-	</div>
-	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
@@ -51,13 +29,13 @@
 		-
 		<?php echo $form->textField($model,'max_players', array('size' => 1, 'maxlength' => 10, 'disabled' => TRUE)); ?>
 		<?php echo $form->error($model,'min_players'); ?>
-		
+
 	</div>
-	
+
 	<div class="row">
 		<?php
 		$this->widget('application.extensions.jui.ESlider',
-		  array(                    
+		  array(
 		        'name' => 'slider',
 		        'theme' => 'ui-lightness',
 		        'enabled' => true,
@@ -114,12 +92,12 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'categories'); ?>
-	    <?php echo $form->listBox($model, 'categoryIds', 
-	    	CHtml::listData(Category::model()->findAll(), 'id', 'name'), 
+	    <?php echo $form->listBox($model, 'categoryIds',
+	    	CHtml::listData(Category::model()->findAll(), 'id', 'name'),
 	    	array(
 	    		'multiple' => true,
 	    		'checkAll' => 'Check All',
-			)); 
+			));
 	    ?>
 	</div>
 
@@ -128,7 +106,7 @@
 		<?php echo $form->dropDownList($model, 'publisher_id', Publisher::model()->getPublisherOptions(), array('empty' => '-- Select publisher --')); ?>
 		<?php echo $form->error($model,'publisher_id'); ?>
 	</div>
-	
+
 	<div class="row">
 		<?php echo $form->labelEx($model, 'artists'); ?>
 		<?php echo $form->listBox($model, 'artistIds',
