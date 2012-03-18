@@ -33,7 +33,10 @@ class ESelectToUISlider extends CWidget
 		$cs->registerScriptFile($this->getAssetsUrl() . '/js/jquery-1.7.1.min.js');
 		$cs->registerScriptFile($this->getAssetsUrl() . '/js/jquery-ui-1.8.18.custom.min.js');
 		$cs->registerScriptFile($this->getAssetsUrl() . '/js/selectToUISlider.jQuery.js');
+		
 		$cs->registerCssFile($this->getAssetsUrl() . '/css/ui.slider.extras.css');
+		$cs->registerCssFile($this->getAssetsUrl() . '/css/redmond/jquery-ui-1.7.1.custom.css');
+		
 		$cs->registerCss("estuis",
 <<<EOT
 fieldset { border:0; margin: 6em; height: 12em;font-size: 62.5%; font-family:"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;}
