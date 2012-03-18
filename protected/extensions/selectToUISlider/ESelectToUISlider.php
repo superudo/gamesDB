@@ -8,7 +8,6 @@ class ESelectToUISlider extends CWidget
 	 * parameters
 	 */
 
-	public $label = '';
 	public $model; // enthält das CActiveRecord model
 
 	public $properties = array();
@@ -29,14 +28,15 @@ class ESelectToUISlider extends CWidget
 	public function init()
 	{
 		$cs = Yii::app()->getClientScript();
+		$aUrl = $this->getAssetsUrl();
 
-		$cs->registerScriptFile($this->getAssetsUrl() . '/js/jquery-1.7.1.min.js');
-		$cs->registerScriptFile($this->getAssetsUrl() . '/js/jquery-ui-1.8.18.custom.min.js');
-		$cs->registerScriptFile($this->getAssetsUrl() . '/js/selectToUISlider.jQuery.js');
-		
-		$cs->registerCssFile($this->getAssetsUrl() . '/css/ui.slider.extras.css');
-		$cs->registerCssFile($this->getAssetsUrl() . '/css/redmond/jquery-ui-1.7.1.custom.css');
-		
+		$cs->registerScriptFile($aUrl . '/js/jquery-1.7.1.min.js');
+		$cs->registerScriptFile($aUrl . '/js/jquery-ui-1.8.18.custom.min.js');
+		$cs->registerScriptFile($aUrl . '/js/selectToUISlider.jQuery.js');
+
+		$cs->registerCssFile($aUrl . '/css/ui.slider.extras.css');
+		$cs->registerCssFile($aUrl . '/css/redmond/jquery-ui-1.7.1.custom.css');
+
 		$cs->registerCss("estuis",
 <<<EOT
 fieldset { border:0; margin: 6em; height: 12em;font-size: 62.5%; font-family:"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;}
@@ -60,7 +60,7 @@ EOT
 		print("<fieldset>");
 		foreach ($this->properties as $prop) {
 			CHtml::resolveNameId($this->model, $prop, $this->htmlOptions);
-			print("<label for='" . $this->htmlOptions['id'] . "'>Testlabel</label>");
+			//print("<label for='" . $this->htmlOptions['id'] . "'>" . $this->label . "</label>");
 			print CHtml::activeDropDownList($this->model, $prop, $this->values, $this->htmlOptions);
 			$sliderIds[] = "select#" . $this->htmlOptions['id'];
 			unset($this->htmlOptions['id']);
@@ -68,6 +68,6 @@ EOT
 		}
 		print("</fieldset>");
 
-		print("<script type='text/javascript'>$('".implode(",", $sliderIds)."').selectToUISlider();</script>");
+		print("<script type='text/javascript'>$('".implode(",", $sliderIds)."').selectToUISlider({ labels: 10 });</script>");
 	}
 }

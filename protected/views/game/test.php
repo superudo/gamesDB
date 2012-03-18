@@ -6,9 +6,9 @@
 )); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model, 'players'); ?>
 		<?php $this->widget('application.extensions.selectToUISlider.ESelectToUISlider',
 			array(
-				'label' => 'Number of Players',
 				'model' => $model,
 				'properties' => array('min_players', 'max_players'),
 				'values' => array(
@@ -23,7 +23,24 @@
 					9 => 9,
 					10 => 10
 					),
-				'htmlOptions' => array(),
+				'htmlOptions' => array('hidden' => true),
+			)
+		); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model, 'min_age'); ?>
+		<?php $this->widget('application.extensions.selectToUISlider.ESelectToUISlider',
+			array(
+				'model' => $model,
+				'properties' => array('min_age'),
+				'values' => array(
+					3 => 3,
+					6 => 6,
+					8 => 8,
+					12 => 12
+				),
+				'htmlOptions' => array('hidden' => true),
 			)
 		); ?>
 	</div>
