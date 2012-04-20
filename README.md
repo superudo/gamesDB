@@ -1,4 +1,4 @@
 gamesDB
 =======
 
-PHP Version einer Datenbank für meine Spielesammlung
+PHP/Yii Version einer Datenbank für meine Spielesammlung
