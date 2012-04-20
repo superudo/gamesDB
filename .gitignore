@@ -1,1 +1,8 @@
-protected/runtime/application.log
+*.swp
+.buildpath
+.project
+.settings
+assets/*
+protected/runtime/*
+protected/data/*.db
+protected/tests/report/*
