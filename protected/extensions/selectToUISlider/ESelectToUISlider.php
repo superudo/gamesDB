@@ -75,6 +75,6 @@ EOT
 		}
 		print("</fieldset>");
 
-		print("<script type='text/javascript'>$('".implode(",", $sliderIds)."').selectToUISlider({labels:10, sliderOptions: {step: 2}});</script>");
+		print("<script type='text/javascript'>$('".implode(",", $sliderIds)."').selectToUISlider({labels:10, sliderOptions: {step: 1}});</script>");
 	}
 }

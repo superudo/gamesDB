@@ -25,9 +25,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'players'); ?>
-		<?php echo $form->textField($model, 'min_players', array('size' => 1, 'maxlength' => 10, 'disabled' => TRUE)); ?>
+		<?php echo $form->textField($model, 'min_players', array('size' => 1, 'maxlength' => 10, 'disabled' => FALSE)); ?>
 		-
-		<?php echo $form->textField($model,'max_players', array('size' => 1, 'maxlength' => 10, 'disabled' => TRUE)); ?>
+		<?php echo $form->textField($model,'max_players', array('size' => 1, 'maxlength' => 10, 'disabled' => FALSE)); ?>
 		<?php echo $form->error($model,'min_players'); ?>
 
 	</div>

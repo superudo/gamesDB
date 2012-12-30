@@ -94,7 +94,7 @@ class Game extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('min_age, duration, publisher_id, base_game_id', 'numerical', 'integerOnly'=>true, 'min'=>0),
-			array('min_players, max_players', 'numerical', 'min' => 1, 'max' => 8, 'integerOnly'=>true), 
+			array('min_players, max_players', 'numerical', 'min' => 1, 'max' => 10, 'integerOnly'=>true), 
 			array('luding_id', 'numerical', 'integerOnly' => true),
 			array('name', 'length', 'max'=>100),
 			array('boxwidth, boxlength, boxheight', 'length', 'max'=>4),

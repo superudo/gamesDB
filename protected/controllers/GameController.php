@@ -70,7 +70,15 @@ class GameController extends Controller
 		{
 			$model->attributes = $_POST['Game'];
 			$model->categories = $_POST['Game']['categoryIds'];
+
+			if (isset($_POST['Game']['artistIds'])) {
+				$model->artists = $_POST['Game']['artistIds'];
+			}
 			
+			if (isset($_POST['Game']['authorIds'])) {
+				$model->authors = $_POST['Game']['authorIds'];
+			}
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -96,7 +104,15 @@ class GameController extends Controller
 		{
 			$model->attributes = $_POST['Game'];
 			$model->categories = $_POST['Game']['categoryIds'];
+
+			if (isset($_POST['Game']['artistIds'])) {
+				$model->artists = $_POST['Game']['artistIds'];
+			}
 			
+			if (isset($_POST['Game']['authorIds'])) {
+				$model->authors = $_POST['Game']['authorIds'];
+			}
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
