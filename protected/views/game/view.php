@@ -1,3 +1,8 @@
+<?php 
+/* @var $this GameController */
+/* @var $model Game */
+?>
+
 <?php
 $this->breadcrumbs=array(
 	'Games'=>array('index'),

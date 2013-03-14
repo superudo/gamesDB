@@ -210,4 +210,12 @@ class Game extends CActiveRecord
 	public function getGameDuration() {
 		return (($this->duration == null) || ($this->duration == 0))? "n/a": $this->duration . " min";
 	}
+	
+	public function getPlayerCountValues() {
+		return array(1 => 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	}
+	
+	public function getAgeStepValues() {
+		return array(3 => 3, 6 => 6, 8 => 8, 12 => 12);
+	}
 }
