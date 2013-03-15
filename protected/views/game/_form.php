@@ -1,10 +1,17 @@
+<?php
+/**
+ * @var $this GameController
+ * @var $model Game
+ */
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'game-form',
-	'focus'=>array($model, 'name'),
-	'enableAjaxValidation'=>false,
-	'enableClientValidation'=>true,
+	'id' => 'game-form',
+	'focus' => array($model, 'name'),
+	'enableAjaxValidation' => false,
+	'enableClientValidation' => true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -12,9 +19,9 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('maxlength'=>100)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<?php echo $form->labelEx($model, 'name'); ?>
+		<?php echo $form->textField($model, 'name',array('maxlength' => 100)); ?>
+		<?php echo $form->error($model, 'name'); ?>
 	</div>
 
 	<div class="row">
@@ -86,7 +93,27 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'boxsize'); ?>
-		<?php echo $form->textField($model,'boxwidth',array('size'=>4,'maxlength'=>4)); ?> x <?php echo $form->textField($model,'boxlength',array('size'=>4,'maxlength'=>4)); ?> x <?php echo $form->textField($model,'boxheight',array('size'=>4,'maxlength'=>4)); ?>
+		<?php 
+		echo $form->textField($model, 'boxwidth', 
+				array(
+					'size' => 4,
+					'maxlength' => 4)
+				) 
+			. ' x ' . 
+			$form->textField($model, 'boxlength',
+					array(
+						'size' => 4,
+						'maxlength' => 4
+						)
+					)
+			. ' x ' .
+			$form->textField($model, 'boxheight', 
+					array(
+						'size' => 4,
+						'maxlength' => 4
+					)
+				); 
+		?>
 		<?php echo $form->error($model,'boxwidth'); ?>
 	</div>
 

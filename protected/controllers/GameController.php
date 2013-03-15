@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Controller class for Games
+ * @package Controllers
+ */
 class GameController extends Controller
 {
 	/**
@@ -27,7 +30,7 @@ class GameController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test'),
+				'actions'=>array('index','view','test','subform'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -170,6 +173,29 @@ class GameController extends Controller
 		));
 	}
 
+	
+	public function actionSubform() {
+		$form = new CForm('application.views.game.form');
+		$form['game']->model = new Game;
+		$form['author']->model = new Author;
+		
+		if ($form->submitted('save')) {
+			$game = $form['game']->model;
+			$author = $form['author']->model;
+			$this->redirect('view');
+		}
+		
+		if ($form->submitted('saveauthor')) {
+			$this->redirect('author');
+		}
+		
+		$this->render('subform', array('form' => $form));
+		
+	}
+	/**
+	 * Action for testing purposes
+	 * @param integer $id
+	 */
 	public function actionTest($id) 
 	{
 		$model = $this->loadModel($id);
@@ -213,6 +239,11 @@ class GameController extends Controller
 		}
 	}
 	
+	/**
+	 * Gets the name of a game identified by $id
+	 * @param integer $id ID of the game to get the name for
+	 * @return string Name of the game or empty string
+	 */
 	public function getName($id)
 	{
 		$game = $this->findByPk($id);
