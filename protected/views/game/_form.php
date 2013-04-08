@@ -135,6 +135,18 @@
 	</div>
 
 	<div class="row">
+		<?php echo CHtml::label('Neuer Autor', 'new_author'); ?>
+		<?php echo CHtml::textField('new_autor'); ?>
+		<?php echo CHtml::ajaxSubmitButton(
+				' + ', 
+				array('games/reqUpdateAuthor'), 
+				array(
+					'update' => '#artistIds'
+				)
+			); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model, 'artists'); ?>
 		<?php echo $form->listBox($model, 'artistIds',
 			CHtml::listData(Artist::model()->findAll(), 'id', 'name'),
