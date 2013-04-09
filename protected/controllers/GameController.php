@@ -30,7 +30,7 @@ class GameController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test','subform'),
+				'actions'=>array('index','view','test','subform','reqTest01','reqUpdateAuthor'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -91,6 +91,29 @@ class GameController extends Controller
 		));
 	}
 
+	public function actionReqTest01() {
+		echo date('H:i:s');
+		Yii::app()->end();
+	}
+	
+	public function actionReqUpdateAuthor() {
+		if (isset($_POST['new_author'])) {
+			$author = new Author();
+			$author->name = $_POST['new_author'];
+			$author->save();
+		}
+		
+		if (isset($_POST['id'])) {
+			$model = $this->loadModel($_POST['id']);
+		}
+		else {
+			$model = new Game();
+		}
+
+		$this->renderPartial('_authors', array('model' => $model));	
+		
+		Yii::app()->end();
+	}
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
