@@ -12,6 +12,9 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'List Games', 'url'=>array('index')),
 	array('label'=>'Manage Game', 'url'=>array('admin')),
+	array('label'=>'Manage Authors', 'url'=>array('author/admin')),
+	array('label'=>'Manage Artists', 'url'=>array('artist/admin')),
+	array('label'=>'Manage Publishers', 'url'=>array('publisher/admin')),
 );
 ?>
 

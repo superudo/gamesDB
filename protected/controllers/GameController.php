@@ -30,7 +30,7 @@ class GameController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test','subform','reqUpdateAuthor'),
+				'actions'=>array('index','view','test','subform','reqUpdateAuthor','reqUpdateArtist'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -93,21 +93,44 @@ class GameController extends Controller
 
 	public function actionReqUpdateAuthor() {
 		if ($_POST['isAjaxRequest'] == 1) {
-				if (isset($_POST['new_author'])) {
-					$author = new Author();
-					$author->name = $_POST['new_author'];
-					$author->url = "";
-					$author->save();
+			if (isset($_POST['new_author'])) {
+				$author = new Author();
+				$author->name = $_POST['new_author'];
+				$author->url = "";
+				$author->save();
+				
 				if (isset($_POST['id']) && is_integer($_POST['id'])) {
 					$model = $this->loadModel($_POST['id']);
 					$model->authors[] = $author;
-				}
-				else {
+				} else {
 					$model = new Game();
 					$model->authors = array($author);
 				}
+				
 			}
-			$this->renderPartial('_authors', array('model' => $model), false, true);	
+			$this->renderPartial('_authors', array('model' => $model), false, true);
+		}
+		Yii::app()->end();
+	}
+
+	public function actionReqUpdateArtist() {
+		if ($_POST['isAjaxRequest'] == 1) {
+			if (isset($_POST['new_artist'])) {
+				$artist = new Artist();
+				$artist->name = $_POST['new_artist'];
+				$artist->url = "";
+				$artist->save();
+				
+				if (isset($_POST['id']) && is_integer($_POST['id'])) {
+					$model = $this->loadModel($_POST['id']);
+					$model->artists[] = $artist;
+				} else {
+					$model = new Game();
+					$model->artists = array($artist);
+				}
+				
+			}
+			$this->renderPartial('_artists', array('model' => $model), false, true);
 		}
 		Yii::app()->end();
 	}
@@ -126,7 +149,12 @@ class GameController extends Controller
 		if(isset($_POST['Game']))
 		{
 			$model->attributes = $_POST['Game'];
-			$model->categories = $_POST['Game']['categoryIds'];
+			if (isset($_POST['Game']['categoryIds'])) {
+				$model->categories = $_POST['Game']['categoryIds'];
+			}
+			else {
+				$model->categories = array();
+			}
 
 			if (isset($_POST['Game']['artistIds'])) {
 				$model->artists = $_POST['Game']['artistIds'];

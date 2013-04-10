@@ -15,6 +15,9 @@ $this->menu=array(
 	array('label'=>'Create Game', 'url'=>array('create')),
 	array('label'=>'View Game', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Game', 'url'=>array('admin')),
+	array('label'=>'Manage Authors', 'url'=>array('author/admin')),
+	array('label'=>'Manage Artists', 'url'=>array('artist/admin')),
+	array('label'=>'Manage Publishers', 'url'=>array('publisher/admin')),
 );
 ?>
 
