@@ -30,7 +30,7 @@ class GameController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test','subform','reqTest01','reqUpdateAuthor'),
+				'actions'=>array('index','view','test','subform','reqUpdateAuthor'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -91,27 +91,24 @@ class GameController extends Controller
 		));
 	}
 
-	public function actionReqTest01() {
-		echo date('H:i:s');
-		Yii::app()->end();
-	}
-	
 	public function actionReqUpdateAuthor() {
-		if (isset($_POST['new_author'])) {
-			$author = new Author();
-			$author->name = $_POST['new_author'];
-			$author->save();
+		if ($_POST['isAjaxRequest'] == 1) {
+				if (isset($_POST['new_author'])) {
+					$author = new Author();
+					$author->name = $_POST['new_author'];
+					$author->url = "";
+					$author->save();
+				if (isset($_POST['id']) && is_integer($_POST['id'])) {
+					$model = $this->loadModel($_POST['id']);
+					$model->authors[] = $author;
+				}
+				else {
+					$model = new Game();
+					$model->authors = array($author);
+				}
+			}
+			$this->renderPartial('_authors', array('model' => $model), false, true);	
 		}
-		
-		if (isset($_POST['id'])) {
-			$model = $this->loadModel($_POST['id']);
-		}
-		else {
-			$model = new Game();
-		}
-
-		$this->renderPartial('_authors', array('model' => $model));	
-		
 		Yii::app()->end();
 	}
 	/**
@@ -134,11 +131,17 @@ class GameController extends Controller
 			if (isset($_POST['Game']['artistIds'])) {
 				$model->artists = $_POST['Game']['artistIds'];
 			}
+			else {
+				$model->artists = array();
+			}
 			
 			if (isset($_POST['Game']['authorIds'])) {
 				$model->authors = $_POST['Game']['authorIds'];
 			}
-                        
+			else {
+				$model->authors = array();
+			}
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

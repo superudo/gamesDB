@@ -125,42 +125,38 @@
 	    	array(
 	    		'multiple' => true,
 	    		'checkAll' => 'Check All',
+				'style' => 'width:200px',
 			));
 	    ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'publisher_id'); ?>
-		<?php echo $form->dropDownList($model, 'publisher_id', Publisher::model()->getPublisherOptions(), array('empty' => '-- Select publisher --')); ?>
+		<?php echo $form->labelEx($model, 'publisher_id'); ?>
+		<?php
+		echo $form->dropDownList($model, 
+				'publisher_id', 
+				Publisher::model()->getPublisherOptions(), 
+				array(
+					'empty' => '-- Select publisher --',
+					'style' => 'width:200px',
+				)
+			);
+		?>
 		<?php echo $form->error($model,'publisher_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'artists'); ?>
 		<?php echo $form->listBox($model, 'artistIds',
-			CHtml::listData(Artist::model()->findAll(), 'id', 'name'),
+			CHtml::listData(Artist::model()->findAll(array('order' => 'name')), 'id', 'name'),
 			array(
 				'multiple' => true,
 				'checkAll' => 'Check all',
+				'style' => 'width:200px',
 			));
 		?>
 	</div>
 
-	<div class="row">
-		<?php echo CHtml::label('Neuer Autor', 'new_author'); ?>
-		<?php echo CHtml::textField('new_author'); ?>
-		<?php echo CHtml::ajaxSubmitButton(
-				' + ', 
-				array('game/reqUpdateAuthor'), 
-				array(
-					'update' => '#Game_authorIds',
-					'complete' => 'function () {
-						$("#new_author").val("");
-					}',
-				)
-			); ?>
-	</div>
-	
 	<div class="row">
 		<?php echo $form->labelEx($model, 'authors'); ?>
 		<?php $this->renderPartial('_authors', 
@@ -172,7 +168,24 @@
 		?>
 	</div>
 
-
+	<div class="row">
+		<?php echo CHtml::textField('new_author', '', array('style' => 'width:200px')); ?>
+		<?php
+		echo CHtml::ajaxSubmitButton(
+				'Neuer Autor', CHtml::normalizeUrl(array('game/reqUpdateAuthor')), array(
+			'data' => 'js:jQuery(this).parents("form").serialize()+"&isAjaxRequest=1"',
+			'success' => 'function (data) {
+						$("#Game_authorIds").html(data);
+						$("#new_author").val("");
+					}',
+				), array(
+			'id' => 'new_author_ajax',
+			'name' => 'new_author_ajax'
+				)
+		);
+		?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'base_game_id'); ?>
 		<?php echo $form->dropDownList($model, 'base_game_id', $model->getPotentialBaseGameOptions(), array('empty' => '-- Select base game --')); ?>

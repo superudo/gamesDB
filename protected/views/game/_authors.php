@@ -6,9 +6,10 @@
 ?>
 
 <?php echo CHtml::activeListBox($model, 'authorIds', 
-	CHtml::listData(Author::model()->findAll(), 'id', 'name'),
+	CHtml::listData(Author::model()->findAll(array('order' => 'name')), 'id', 'name'),
 	array(
 		'multiple' => true,
 		'checkAll' => 'Check all',
+		'style' => 'width:200px',
 	));
 ?>
