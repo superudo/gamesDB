@@ -44,6 +44,7 @@ class Game extends CActiveRecord
 	protected function afterConstruct() {
 		$this->min_players = 1;
 		$this->max_players = 10;
+		$this->min_age = 3;
 	}
 
 	public function afterFind()

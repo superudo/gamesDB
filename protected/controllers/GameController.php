@@ -30,11 +30,11 @@ class GameController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test','subform','reqUpdateAuthor','reqUpdateArtist'),
+				'actions'=>array('index','view','test','subform'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','reqUpdateAuthor','reqUpdateArtist'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -69,10 +69,11 @@ class GameController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Game']))
-		{
+		if (isset($_POST['Game'])) {
 			$model->attributes = $_POST['Game'];
-			$model->categories = $_POST['Game']['categoryIds'];
+			if (isset($_POST['Game']['categoryIds']))  {
+				$model->categories = $_POST['Game']['categoryIds'];
+			}
 
 			if (isset($_POST['Game']['artistIds'])) {
 				$model->artists = $_POST['Game']['artistIds'];

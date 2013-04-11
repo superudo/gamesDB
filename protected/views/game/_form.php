@@ -27,6 +27,13 @@
 		<?php echo $form->error($model, 'name'); ?>
 	</div>
 
+	<div class="row">		<?php 
+			echo CHtml::button("luding lookup", array( 
+				'title' => 'luding_lookup', 
+				'onclick' => "window.open('http://sunsite.informatik.rwth-aachen.de/cgi-bin/luding/GameName.py?lang=DE&frames=0&gamename=' + jQuery('#Game_name').val(),'_blank');"
+			));
+		?>
+	</div>
 	<div class="row">
 		<?php echo $form->labelEx($model, 'luding_id'); ?>
 		<?php echo $form->textField($model, 'luding_id'); ?>
@@ -66,6 +73,26 @@
 		<?php echo $form->error($model, 'min_age'); ?>
 	</div>
 
+	<div class="row">
+		<?php
+		$this->widget('application.extensions.jui.ESlider',array(
+				'name' => 'slider3',
+				'theme' => 'ui-lightness',
+				'enabled' => true,
+				'minValue' => 3.0,
+				'maxValue' => 18.0,
+				'step' => 3.0,
+				'value' => array($model->min_age),
+				'linkedElements' => array('Game_min_age'),
+				'range' => false,
+				'htmlOptions' => array(
+					'style' => 'width:300px;height:10px;'
+				)
+			)
+		);
+		?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model, 'duration'); ?>
 		<?php echo $form->textField($model, 'duration'); ?>
