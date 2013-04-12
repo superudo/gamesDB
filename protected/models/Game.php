@@ -32,6 +32,8 @@ class Game extends CActiveRecord
 	public $authorIds = array();
 	public $artistIds = array();
 	
+	public $publishers_name;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Game the static model class
@@ -67,6 +69,9 @@ class Game extends CActiveRecord
 			}
 		}
 		
+		if (!empty($this->publisher)) {
+			$this->publishers_name = $this->publisher->name;
+		}
 		parent::afterFind();
 	}
 	

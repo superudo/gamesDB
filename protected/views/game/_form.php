@@ -228,6 +228,25 @@
 		<?php echo $form->error($model, 'base_game_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model, "Publisher"); ?>
+		<?php echo $form->hiddenField($model, 'publisher_id', array()); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',
+				array(
+					'model' => $model,
+					'attribute' => 'publishers_name',
+					'source' => $this->createUrl('publisher/autocomplete'),
+					'htmlOptions' => array('placeholder' => 'Any'),
+					'options' => array(
+						'showAnim' => 'fold',
+						'select' => "js:function(publisher, ui) {
+							$('#Game_publisher_id').val(ui.item.id);
+							}"
+						),
+					'cssFile' => false,
+				)); ?>
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
