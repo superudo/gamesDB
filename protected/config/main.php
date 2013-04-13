@@ -5,6 +5,7 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+define('JUI-THEME', 'dark-hive');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My games database',
@@ -76,6 +77,24 @@ return array(
 					'class'=>'CWebLogRoute',
 				),
 				*/
+			),
+		),
+		'clientscript' => array(
+			'packages' => array(
+				'jquery' => array(
+					'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1/',
+					'js' => array('jquery.min.js'),
+				)
+			)
+		),
+		'widgetFactory' => array(
+			'widgets' => array(
+				'CJuiSliderInput' => array(
+					'scriptUrl' => '//ajax.googleapis.com/ajax/libs/jqueryui/1/',
+					//'i18nScriptFile' => 'i18n/jquery-ui-i18n.min.js',
+					'theme' => JUI-THEME,
+					'themeUrl' => '//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/',
+				),
 			),
 		),
 	),
