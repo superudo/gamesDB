@@ -1,0 +1,28 @@
+/* 
+    Document   : gamesdb
+    Created on : 18.04.2013, 22:43:15
+    Author     : Udo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.simple_overlay {
+    display:none;
+    z-index:10000;
+    background-color:#333;
+    width:675px;
+    min-height:200px;
+    border:1px solid #666;
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow:0 0 90px #000;
+}
+
+.simple_overlay .close {
+    background-image:url(close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
