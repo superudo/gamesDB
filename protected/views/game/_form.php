@@ -27,7 +27,7 @@
 			echo $form->textField($model, 'name', array('maxlength' => 100));
 			echo CHtml::button("luding lookup", array( 
 				'title' => 'luding_lookup', 
-				'onclick' => "window.open('http://sunsite.informatik.rwth-aachen.de/cgi-bin/luding/GameName.py?lang=DE&frames=0&gamename=' + jQuery('#Game_name').val(),'_blank');"
+				'onclick' => "return openDialog($('#Game_name').val());",
 			));
 			echo $form->error($model, 'name'); 
 		?>
@@ -184,4 +184,31 @@
 
 	<?php $this->endWidget(); ?>
 
+	<?php
+	$this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+	    'id'=>'mydialog',
+	    // additional javascript options for the dialog plugin
+	    'options'=>array(
+	        'title'=>'Luding lookup',
+	        'autoOpen'=>false,
+			'width' => 850,
+			'height' => 850,
+	    ),
+	));
+	$this->endWidget('zii.widgets.jui.CJuiDialog');
+	?>
+	<script type="text/javascript">
+	function openDialog(ludingTitle) {
+		var dlg = $("#mydialog"),
+			url, ifr;
+			
+			if (typeof ludingTitle === "string" && ludingTitle.length > 0) {
+				url = "http://sunsite.informatik.rwth-aachen.de/cgi-bin/luding/GameName.py?lang=DE&frames=0&gamename=" + escape(ludingTitle);
+				ifr = $("<iframe />").attr("src", url).attr("width", "95%").attr("height", "100%");
+				dlg.html("").append(ifr).dialog("open");
+			}
+			
+			return false;
+	}
+	</script>
 </div><!-- form -->
