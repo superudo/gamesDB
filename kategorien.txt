@@ -1,0 +1,11 @@
+Spielerzahl: 1, 2, 3, 4, 5/6, 6+
+Art des Spiels: Würfel-, Karten-, Brett-, Reisespiel
+Genre: Ärgerspiel, Detektivspiel, Forschen & Entdecken, Knobelspiel, Kooperatives Spiel, Legespiel, Lernspiel, Partyspiel, Reaktionsspiel, Rollenspiel, Stichspiel, Strategie & Taktik, Wort- oder Ratespiel
+Altersgruppe: <3, 3-6, 7-11, 12-16, 16+
+Anspruch: pures Glück, mehr Glück als Taktik, mehr Taktik als Glück, pure Taktik
+
+Grundprinzip: Bauen (3D), Bluffen, Diplomatie & Intrige, Entwickeln, Erforschen, Erotik, Experimentieren, Gebiete kontrollieren, Geschicklichkeit, Handeln, Kämpfen, Kommunizieren, Körpereinsatz, Lernen, Logik, Merken / Konzentrieren, Optimieren, Raten, Reaktionsvermögen, Rechnen, Sammeln, Singen, Suchen, Versteigerung, Wetten/Zocken, Wettrennen, Zeichnen/Formen, Zuordnen
+Thematische Einbindung: abstrakt, ferne Vergangenheit, jüngere Vergangenheit, Gegenwart, Science Fiction, Fantasy, westliche Kultur, asiatische Kultur, arabische Kultur, indigene Kultur, berühmte (thematische) Vorlage, Tiere & Pflanzen, Wirtschaft, Sport, Technik, Geografie, Literatur & Film
+Interaktion zw. Spielern: keine, etwas, viel
+Spieldauer: wenige Minuten, unter einer Stunde, 1-2h, 2-4h, 4h+
+Spielanleitung: simpel, einfach, anspruchsvoll, komplex
