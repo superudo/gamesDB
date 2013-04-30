@@ -85,7 +85,7 @@ return array(
 					'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1/',
 					'js' => array('jquery.min.js'),
 				)
-			)
+			),
 		),
 		'widgetFactory' => array(
 			'widgets' => array(

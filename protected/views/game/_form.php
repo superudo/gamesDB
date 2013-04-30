@@ -4,6 +4,7 @@
  * @var $model Game
  */
 ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/custom/gamesDB.js'); ?>
 
 <div class="form">
 
@@ -183,32 +184,4 @@
 	</div>
 
 	<?php $this->endWidget(); ?>
-
-	<?php
-	$this->beginWidget('zii.widgets.jui.CJuiDialog',array(
-	    'id'=>'mydialog',
-	    // additional javascript options for the dialog plugin
-	    'options'=>array(
-	        'title'=>'Luding lookup',
-	        'autoOpen'=>false,
-			'width' => 850,
-			'height' => 850,
-	    ),
-	));
-	$this->endWidget('zii.widgets.jui.CJuiDialog');
-	?>
-	<script type="text/javascript">
-	function openDialog(ludingTitle) {
-		var dlg = $("#mydialog"),
-			url, ifr;
-			
-			if (typeof ludingTitle === "string" && ludingTitle.length > 0) {
-				url = "http://sunsite.informatik.rwth-aachen.de/cgi-bin/luding/GameName.py?lang=DE&frames=0&gamename=" + escape(ludingTitle);
-				ifr = $("<iframe />").attr("src", url).attr("width", "95%").attr("height", "100%");
-				dlg.html("").append(ifr).dialog("open");
-			}
-			
-			return false;
-	}
-	</script>
 </div><!-- form -->
